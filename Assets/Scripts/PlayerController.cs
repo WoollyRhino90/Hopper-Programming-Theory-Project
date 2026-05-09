@@ -1,8 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+
+private float xRange = 38;
+private float zRange = 17;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,9 +17,28 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    //Limit character bounds
+        if (transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
+        if (transform.position.z < -zRange)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -zRange);
+        }
+        if(transform.position.z > zRange)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, -zRange);
+        }
+
+    //Movement
        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            transform.Translate(Vector3.forward*2);
+            transform.Translate(Vector3.forward*4);
         } 
        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -26,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            transform.Translate(Vector3.back*2);
+            transform.Translate(Vector3.back*4);
         }
     }
 }
