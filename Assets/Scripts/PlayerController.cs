@@ -7,11 +7,16 @@ public class PlayerController : MonoBehaviour
 
 private float xRange = 38;
 private float zRange = 17;
+private float yRange = -5;
+
+public string enemyTag = "Enemy";
+public Vector3 spawnPoint;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+     spawnPoint = transform.position;   
     }
 
     // Update is called once per frame
@@ -35,6 +40,12 @@ private float zRange = 17;
             transform.position = new Vector3(transform.position.x, transform.position.y, -zRange);
         }
 
+        if (transform.position.y < yRange)
+        {
+            transform.position = spawnPoint;
+            Debug.Log("You Drowned!!");
+        }
+
     //Movement
        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -53,4 +64,16 @@ private float zRange = 17;
             transform.Translate(Vector3.back*4);
         }
     }
+
+    // Reset position to start if hit enemy
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(enemyTag))
+        {
+           transform.position=spawnPoint;
+            Debug.Log("You Died!");
+        }
+    }
+
+
 }
