@@ -13,24 +13,25 @@ public class Obsticle : MonoBehaviour
     public float speed = 40.0f;
 
     public float destroyBound = 70f;
-
+    private Rigidbody rb;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-    
-        InvokeRepeating("SpawnEnemy", startDelay, spawnInterval);
+            InvokeRepeating("SpawnEnemy", startDelay, spawnInterval);
+            rb = GetComponent<Rigidbody>();
+            rb.linearVelocity = Vector3.right * speed;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * speed, Space.World);
+        //OLD: transform.Translate(Vector3.right * Time.deltaTime * speed, Space.World);
 
         if (transform.position.x > destroyBound)
          {
-             Destroy(gameObject);
+            gameObject.SetActive(false);
          }
     }
 
@@ -38,6 +39,14 @@ public class Obsticle : MonoBehaviour
     {
    
         Vector3 spawnPos = new Vector3(spawnPosX, 2, spawnPosZ);
-        Instantiate(enemy, spawnPos, enemy.transform.rotation);
+        //OLD: Instantiate(enemy, spawnPos, enemy.transform.rotation);
+
+        GameObject gameObject = LaneManager.SharedInstance.GetPooledObject(); 
+        if (gameObject != null) 
+        {
+            gameObject.transform.position = spawnPos;
+            gameObject.transform.rotation = enemy.transform.rotation;
+            gameObject.SetActive(true);
+        }
     }
 }
