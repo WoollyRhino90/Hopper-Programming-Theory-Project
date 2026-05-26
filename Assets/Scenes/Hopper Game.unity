@@ -586,7 +586,7 @@ MonoBehaviour:
   spawnPosX: -55
   spawnPosZ: -5
   pooledObjects: []
-  objectToPool: {fileID: 5388826174774475615}
+  objectToPool: {fileID: 8332623173466611030, guid: e00947809ea29ac4dad5272287c21947, type: 3}
   amountToPool: 5
 --- !u!1 &452151402
 GameObject:
@@ -1573,7 +1573,7 @@ MonoBehaviour:
   spawnPosX: -55
   spawnPosZ: 7
   pooledObjects: []
-  objectToPool: {fileID: 2613610601147944885}
+  objectToPool: {fileID: 351299392735236119, guid: e6a3942632a03974f9ea8e406122131b, type: 3}
   amountToPool: 5
 --- !u!1 &1249441222
 GameObject:
@@ -1623,7 +1623,7 @@ MonoBehaviour:
   spawnPosX: -55
   spawnPosZ: 2.5
   pooledObjects: []
-  objectToPool: {fileID: 505508096805435081}
+  objectToPool: {fileID: 8416932282568364204, guid: 2fe92834702a9594b8285a1ef3f733b1, type: 3}
   amountToPool: 5
 --- !u!4 &1369064942 stripped
 Transform:
@@ -1939,7 +1939,7 @@ MonoBehaviour:
   spawnPosX: -55
   spawnPosZ: -9
   pooledObjects: []
-  objectToPool: {fileID: 4705503035209544970}
+  objectToPool: {fileID: 2809397112900298274, guid: 7d4e9a4e9c95cdb4ebfc993889a1b743, type: 3}
   amountToPool: 5
 --- !u!1 &1533895445
 GameObject:
@@ -2170,7 +2170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Object Pooling; Ability to ride logs
+  m_text: Ride logs; Exit Button; Sink Faster
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2298,7 +2298,7 @@ MonoBehaviour:
   spawnPosX: -55
   spawnPosZ: -13
   pooledObjects: []
-  objectToPool: {fileID: 3363179574171283543}
+  objectToPool: {fileID: 7983428978420472229, guid: 4342ed9ff4d75244b806e57d505fb326, type: 3}
   amountToPool: 5
 --- !u!1 &1954855795
 GameObject:
@@ -2537,16 +2537,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Log1
       objectReference: {fileID: 0}
+    - target: {fileID: 8416932282568364204, guid: 2fe92834702a9594b8285a1ef3f733b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fe92834702a9594b8285a1ef3f733b1, type: 3}
---- !u!1 &505508096805435081 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8416932282568364204, guid: 2fe92834702a9594b8285a1ef3f733b1, type: 3}
-  m_PrefabInstance: {fileID: 505508096805435080}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2613610601147944884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2558,6 +2557,10 @@ PrefabInstance:
     - target: {fileID: 351299392735236119, guid: e6a3942632a03974f9ea8e406122131b, type: 3}
       propertyPath: m_Name
       value: Log2
+      objectReference: {fileID: 0}
+    - target: {fileID: 351299392735236119, guid: e6a3942632a03974f9ea8e406122131b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3911056628846286811, guid: e6a3942632a03974f9ea8e406122131b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2604,11 +2607,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6a3942632a03974f9ea8e406122131b, type: 3}
---- !u!1 &2613610601147944885 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 351299392735236119, guid: e6a3942632a03974f9ea8e406122131b, type: 3}
-  m_PrefabInstance: {fileID: 2613610601147944884}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3363179574171283542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2617,6 +2615,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1449490805431924610, guid: 4342ed9ff4d75244b806e57d505fb326, type: 3}
+      propertyPath: laneManager
+      value: 
+      objectReference: {fileID: 1938511684}
     - target: {fileID: 5872232420038869183, guid: 4342ed9ff4d75244b806e57d505fb326, type: 3}
       propertyPath: m_LocalPosition.x
       value: -52.89
@@ -2661,16 +2663,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy3
       objectReference: {fileID: 0}
+    - target: {fileID: 7983428978420472229, guid: 4342ed9ff4d75244b806e57d505fb326, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4342ed9ff4d75244b806e57d505fb326, type: 3}
---- !u!1 &3363179574171283543 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7983428978420472229, guid: 4342ed9ff4d75244b806e57d505fb326, type: 3}
-  m_PrefabInstance: {fileID: 3363179574171283542}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4705503035209544969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2679,9 +2680,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 726156188405331394, guid: 7d4e9a4e9c95cdb4ebfc993889a1b743, type: 3}
+      propertyPath: laneManager
+      value: 
+      objectReference: {fileID: 1533590588}
     - target: {fileID: 2809397112900298274, guid: 7d4e9a4e9c95cdb4ebfc993889a1b743, type: 3}
       propertyPath: m_Name
       value: Enemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809397112900298274, guid: 7d4e9a4e9c95cdb4ebfc993889a1b743, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4069274620642445838, guid: 7d4e9a4e9c95cdb4ebfc993889a1b743, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2728,11 +2737,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d4e9a4e9c95cdb4ebfc993889a1b743, type: 3}
---- !u!1 &4705503035209544970 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2809397112900298274, guid: 7d4e9a4e9c95cdb4ebfc993889a1b743, type: 3}
-  m_PrefabInstance: {fileID: 4705503035209544969}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5388826174774475614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2785,16 +2789,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1
       objectReference: {fileID: 0}
+    - target: {fileID: 8332623173466611030, guid: e00947809ea29ac4dad5272287c21947, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689449974709433929, guid: e00947809ea29ac4dad5272287c21947, type: 3}
+      propertyPath: laneManager
+      value: 
+      objectReference: {fileID: 326867294}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e00947809ea29ac4dad5272287c21947, type: 3}
---- !u!1 &5388826174774475615 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8332623173466611030, guid: e00947809ea29ac4dad5272287c21947, type: 3}
-  m_PrefabInstance: {fileID: 5388826174774475614}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

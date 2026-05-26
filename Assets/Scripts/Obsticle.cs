@@ -5,22 +5,24 @@ public class Obsticle : MonoBehaviour
 {
 
     public GameObject enemy;
-    public float spawnPosZ;
-    public float spawnPosX = -55;
-    public float startDelay = 2f;
-    public float spawnInterval;
+    //public float spawnPosZ;
+    //public float spawnPosX = -55;
+    //public float startDelay = 2f;
+    //public float spawnInterval;
 
     public float speed = 40.0f;
 
     public float destroyBound = 70f;
     private Rigidbody rb;
+    [HideInInspector] public LaneManager laneManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected virtual void Start()
+    protected virtual void OnEnable()
     {
-            InvokeRepeating("SpawnEnemy", startDelay, spawnInterval);
+       
             rb = GetComponent<Rigidbody>();
+
             rb.linearVelocity = Vector3.right * speed;
     }
 
@@ -33,20 +35,5 @@ public class Obsticle : MonoBehaviour
          {
             gameObject.SetActive(false);
          }
-    }
-
-    protected void SpawnEnemy()
-    {
-   
-        Vector3 spawnPos = new Vector3(spawnPosX, 2, spawnPosZ);
-        //OLD: Instantiate(enemy, spawnPos, enemy.transform.rotation);
-
-        GameObject gameObject = LaneManager.SharedInstance.GetPooledObject(); 
-        if (gameObject != null) 
-        {
-            gameObject.transform.position = spawnPos;
-            gameObject.transform.rotation = enemy.transform.rotation;
-            gameObject.SetActive(true);
-        }
     }
 }

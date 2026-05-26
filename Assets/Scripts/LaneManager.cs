@@ -10,26 +10,26 @@ public float spawnPosZ = 0f;
 
     
 
-public static LaneManager SharedInstance;
+//OLD: public static LaneManager SharedInstance;
 public List<GameObject> pooledObjects;
 public GameObject objectToPool;
 public int amountToPool;
 
-void Awake()
-{
-    SharedInstance = this;
-}
+//OLD: void Awake()
+//{
+   // SharedInstance = this;
+//}
 
 void Start()
 {
     pooledObjects = new List<GameObject>();
-    GameObject tmp;
     for(int i = 0; i < amountToPool; i++)
     {
-        tmp = Instantiate(objectToPool);
+        GameObject tmp = Instantiate(objectToPool);
         tmp.SetActive(false);
         pooledObjects.Add(tmp);
     }
+    InvokeRepeating(nameof(SpawnEnemy), 0f, spawnInterval);
 }
 
 public GameObject GetPooledObject()
@@ -45,7 +45,24 @@ public GameObject GetPooledObject()
     return null;
 }
 
+private void SpawnEnemy()
+    {
+        Vector3 spawnPos = new Vector3(spawnPosX, 2, spawnPosZ);
 
+        GameObject pooledEnemy = GetPooledObject();
+        if (pooledEnemy != null)
+        {
+            Obsticle obsticleScript = pooledEnemy.GetComponent<Obsticle>();
+            if (obsticleScript != null)
+            {
+                obsticleScript.laneManager = this;
+            }
+        
+        pooledEnemy.transform.position = spawnPos;
+        pooledEnemy.transform.rotation = objectToPool.transform.rotation;
+        pooledEnemy.SetActive(true);
+        }
+    }
 }
 
 

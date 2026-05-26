@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4069274620642445838
 Transform:
   m_ObjectHideFlags: 0
@@ -129,12 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obsticle
   enemy: {fileID: 2809397112900298274}
-  spawnPosZ: -9
-  spawnPosX: -55
-  startDelay: 2
-  spawnInterval: 3
   speed: 50
   destroyBound: 70
+  laneManager: {fileID: 0}
 --- !u!54 &1009755182984677776
 Rigidbody:
   m_ObjectHideFlags: 0

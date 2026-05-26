@@ -13,14 +13,14 @@ GameObject:
   - component: {fileID: 5157905671526307853}
   - component: {fileID: 9042039855209089544}
   - component: {fileID: 946296585244333602}
-  - component: {fileID: -3795449697704391877}
+  - component: {fileID: 6250231894052708614}
   m_Layer: 0
   m_Name: Log1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7601441715130632358
 Transform:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 0
---- !u!114 &-3795449697704391877
+--- !u!114 &6250231894052708614
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,13 +150,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8416932282568364204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba71705e43235ec4b8f8545e37382b24, type: 3}
+  m_Script: {fileID: 11500000, guid: 39f75bc5e79f9a641aeb84fd4f397bca, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LogController
+  m_EditorClassIdentifier: Assembly-CSharp::Obsticle
   enemy: {fileID: 8416932282568364204}
-  spawnPosZ: 2.5
-  spawnPosX: -55
-  startDelay: 2
-  spawnInterval: 4
-  speed: 10
+  speed: 40
   destroyBound: 70
+  laneManager: {fileID: 0}
