@@ -12,11 +12,16 @@ private float yRange = -5;
 public string enemyTag = "Enemy";
 public Vector3 spawnPoint;
 
+public float hopDistance = 1f;
+public float hopSpeed = 10f;
+private Rigidbody rb;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-     spawnPoint = transform.position;   
+        rb = GetComponent<Rigidbody>();
+        spawnPoint = transform.position;   
     }
 
     // Update is called once per frame
@@ -49,22 +54,26 @@ public Vector3 spawnPoint;
     //Movement
        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            transform.Translate(Vector3.forward*4);
+            Hop(Vector3.forward);
         } 
        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            transform.Translate(Vector3.left*2);
+            Hop(Vector3.left);
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            transform.Translate(Vector3.right*2);
+            Hop(Vector3.right);
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            transform.Translate(Vector3.back*4);
+            Hop(Vector3.back);
         }
     }
 
+void Hop(Vector3 direction)
+    {
+        rb.MovePosition(rb.position + direction * hopDistance);
+    }
     // Reset position to start if hit enemy
     void OnTriggerEnter(Collider other)
     {
@@ -75,5 +84,17 @@ public Vector3 spawnPoint;
         }
     }
 
+    // Ride with log if on log
+void OnCollisionEnter(Collision other)
+{
+    if (other.gameObject.CompareTag("Log"))
+        transform.SetParent(other.transform);
+        Debug.Log("Log");
+}
 
+void OnCollisionExit(Collision other)
+{
+    if (other.gameObject.CompareTag("Log"))
+        transform.SetParent(null);
+}
 }
