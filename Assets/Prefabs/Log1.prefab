@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9042039855209089544}
   - component: {fileID: 946296585244333602}
   - component: {fileID: 6250231894052708614}
+  - component: {fileID: -5516935772057635787}
   m_Layer: 0
   m_Name: Log1
   m_TagString: Log
@@ -108,7 +109,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -137,7 +138,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 2
@@ -154,6 +155,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obsticle
   enemy: {fileID: 8416932282568364204}
-  speed: 40
+  speed: 10
+  destroyBound: 70
+  laneManager: {fileID: 0}
+--- !u!114 &-5516935772057635787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8416932282568364204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20aa75548d5a03e4c84d504db0a206ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LogController
+  enemy: {fileID: 0}
+  speed: 10
   destroyBound: 70
   laneManager: {fileID: 0}

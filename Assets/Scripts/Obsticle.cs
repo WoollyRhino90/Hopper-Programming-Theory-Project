@@ -13,7 +13,7 @@ public class Obsticle : MonoBehaviour
     public float speed = 40.0f;
 
     public float destroyBound = 70f;
-    private Rigidbody rb;
+    protected Rigidbody rb;
     [HideInInspector] public LaneManager laneManager;
 
 
@@ -23,14 +23,16 @@ public class Obsticle : MonoBehaviour
        
             rb = GetComponent<Rigidbody>();
 
-            rb.linearVelocity = Vector3.right * speed;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        //OLD: transform.Translate(Vector3.right * Time.deltaTime * speed, Space.World);
-
+    
+        if (rb != null && rb.isKinematic == false)
+        {
+            rb.linearVelocity = Vector3.right * speed;
+        }
         if (transform.position.x > destroyBound)
          {
             gameObject.SetActive(false);

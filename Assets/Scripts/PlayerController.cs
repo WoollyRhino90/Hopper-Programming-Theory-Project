@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -12,9 +13,13 @@ private float yRange = -5;
 public string enemyTag = "Enemy";
 public Vector3 spawnPoint;
 
+public bool isOnGround = true;
+public bool gameOver = false;
+
 public float hopDistance = 1f;
 public float hopSpeed = 10f;
 private Rigidbody rb;
+private LogController currentLog = null;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +32,16 @@ private Rigidbody rb;
     // Update is called once per frame
     void Update()
     {
+    //check for ground
+         isOnGround = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+
+    //move with current log
+        if (currentLog != null)
+        {
+            transform.position += currentLog.CurrentVelocity * Time.deltaTime;
+        }
+    
+
     //Limit character bounds
         if (transform.position.x < -xRange)
         {
@@ -44,7 +59,7 @@ private Rigidbody rb;
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -zRange);
         }
-
+    // drown if fall below ground
         if (transform.position.y < yRange)
         {
             transform.position = spawnPoint;
@@ -52,22 +67,26 @@ private Rigidbody rb;
         }
 
     //Movement
-       if (Input.GetKeyDown(KeyCode.UpArrow))
+
+    if (isOnGround)
         {
-            Hop(Vector3.forward);
-        } 
-       if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                Hop(Vector3.forward);
+            } 
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
             Hop(Vector3.left);
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
             Hop(Vector3.right);
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
             Hop(Vector3.back);
-        }
+            }
+        }                                                                  
     }
 
 void Hop(Vector3 direction)
@@ -82,19 +101,34 @@ void Hop(Vector3 direction)
            transform.position=spawnPoint;
             Debug.Log("You Died!");
         }
+        else if (other.CompareTag("Log"))
+        {
+            currentLog = other.GetComponent<LogController>();
+        }
     }
-
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Log"))
+        {
+            currentLog = null;
+        }
+    }
     // Ride with log if on log
-void OnCollisionEnter(Collision other)
-{
-    if (other.gameObject.CompareTag("Log"))
-        transform.SetParent(other.transform);
-        Debug.Log("Log");
-}
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //if (collision.gameObject.CompareTag("Log"))
+       // {
+       // currentLog = collision.gameObject.GetComponent<LogController>();  
+       // }
+        
+    //}
 
-void OnCollisionExit(Collision other)
-{
-    if (other.gameObject.CompareTag("Log"))
-        transform.SetParent(null);
-}
-}
+    //void OnCollisionExit(Collision collision)
+    //{
+     //if (collision.gameObject.CompareTag("Log"))
+     //   {
+     //   currentLog = null; 
+     //   }
+    //}
+
+ }

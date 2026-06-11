@@ -47,7 +47,7 @@ public GameObject GetPooledObject()
 
 private void SpawnEnemy()
     {
-        Vector3 spawnPos = new Vector3(spawnPosX, 2, spawnPosZ);
+        Vector3 spawnPos = new Vector3(spawnPosX, transform.position.y, spawnPosZ);
 
         GameObject pooledEnemy = GetPooledObject();
         if (pooledEnemy != null)
@@ -64,25 +64,7 @@ private void SpawnEnemy()
         }
     }
 }
+    
+ 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-         
-   
-   
