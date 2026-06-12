@@ -5,10 +5,6 @@ public class Obsticle : MonoBehaviour
 {
 
     public GameObject enemy;
-    //public float spawnPosZ;
-    //public float spawnPosX = -55;
-    //public float startDelay = 2f;
-    //public float spawnInterval;
 
     public float speed = 40.0f;
 

@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,9 +18,10 @@ public bool isOnGround = true;
 public bool gameOver = false;
 
 public float hopDistance = 1f;
-public float hopSpeed = 10f;
+//public float hopSpeed = 10f;
 private Rigidbody rb;
 private LogController currentLog = null;
+private UIManager uiManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +29,7 @@ private LogController currentLog = null;
     {
         rb = GetComponent<Rigidbody>();
         spawnPoint = transform.position;   
+        uiManager = FindFirstObjectByType<UIManager>();
     }
 
     // Update is called once per frame
@@ -64,11 +67,12 @@ private LogController currentLog = null;
         {
             transform.position = spawnPoint;
             Debug.Log("You Drowned!!");
+            FindFirstObjectByType<UIManager>().LifeLost();
         }
 
     //Movement
 
-    if (isOnGround)
+    if (isOnGround || currentLog != null)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -76,59 +80,57 @@ private LogController currentLog = null;
             } 
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-            Hop(Vector3.left);
+                Hop(Vector3.left);
             }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-            Hop(Vector3.right);
+                Hop(Vector3.right);
             }
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-            Hop(Vector3.back);
+                Hop(Vector3.back);
             }
         }                                                                  
     }
 
 void Hop(Vector3 direction)
     {
-        rb.MovePosition(rb.position + direction * hopDistance);
+        if (!uiManager.isGameActive) return;
+         transform.position += direction * hopDistance;
+        //old movement: rb.MovePosition(rb.position + direction * hopDistance);
     }
-    // Reset position to start if hit enemy
+   
     void OnTriggerEnter(Collider other)
     {
+// set current log and ride on it
+        LogController log = other.GetComponentInParent<LogController>();
+        if (log != null)
+        {
+            currentLog = log;
+            return;
+        }
+ // Reset position to start if hit enemy
         if (other.CompareTag(enemyTag))
         {
            transform.position=spawnPoint;
-            Debug.Log("You Died!");
+           FindFirstObjectByType<UIManager>().LifeLost();
+           Debug.Log("You Died!");
         }
-        else if (other.CompareTag("Log"))
+// move player to center of safespot if partially on it
+        if (other.CompareTag("SafeSpot"))
         {
-            currentLog = other.GetComponent<LogController>();
+            transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
         }
+                
     }
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Log"))
+        LogController log = other.GetComponentInParent<LogController>();
+        if (log != null && log == currentLog)
         {
             currentLog = null;
         }
     }
-    // Ride with log if on log
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //if (collision.gameObject.CompareTag("Log"))
-       // {
-       // currentLog = collision.gameObject.GetComponent<LogController>();  
-       // }
-        
-    //}
 
-    //void OnCollisionExit(Collision collision)
-    //{
-     //if (collision.gameObject.CompareTag("Log"))
-     //   {
-     //   currentLog = null; 
-     //   }
-    //}
 
  }

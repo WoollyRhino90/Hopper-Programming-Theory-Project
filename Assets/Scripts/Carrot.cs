@@ -20,11 +20,12 @@ public class Carrot : MonoBehaviour
         {
             if (playerClone != null)
             {
+
                 Instantiate(playerClone, this.transform.position, this.transform.rotation);
                 Debug.Log("Safe Bunny!");
             }
         }
-        
+        FindFirstObjectByType<UIManager>().CarrotCollected();
         Destroy(gameObject);
         other.transform.position = spawnPoint;
      
