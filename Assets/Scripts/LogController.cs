@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public class LogController : Obsticle
+public class LogController : Obsticle //INHERITANCE
+
+
 {
     public Vector3 CurrentVelocity => Vector3.right * speed;
 
@@ -13,7 +15,7 @@ public class LogController : Obsticle
    
       
     // Update is called once per frame
-    protected override void Update()
+    protected override void Update() //POLYMORPHISM
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
 

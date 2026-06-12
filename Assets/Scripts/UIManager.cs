@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-public bool isGameOver { get; private set; }
+public bool isGameOver { get; private set; } //ENCAPSULATION
 public bool isGameActive => !isGameOver;
 
 public int totalCarrots = 5;
@@ -62,14 +62,14 @@ public void LifeLost()
         Debug.Log("You Win!");
         EndGame();
     }
-    void GameOver()
+    void GameOver() //ABSTRACTION
     {
         if (isGameOver) return;
         GameOverUI.SetActive(true);
         Debug.Log("You Lose!");
         EndGame();
     }
- void EndGame()
+ void EndGame() //ABSTRACTION
     {
         isGameOver = true;
     }
