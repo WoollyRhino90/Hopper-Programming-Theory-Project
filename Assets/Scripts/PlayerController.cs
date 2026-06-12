@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
@@ -9,13 +10,14 @@ public class PlayerController : MonoBehaviour
 
 private float xRange = 38;
 private float zRange = 17;
-private float yRange = -5;
+private float yRange = -2;
 
 public string enemyTag = "Enemy";
 public Vector3 spawnPoint;
 
 public bool isOnGround = true;
 public bool gameOver = false;
+private bool onSafeSpot = false;
 
 public float hopDistance = 1f;
 //public float hopSpeed = 10f;
@@ -116,10 +118,13 @@ void Hop(Vector3 direction)
            FindFirstObjectByType<UIManager>().LifeLost();
            Debug.Log("You Died!");
         }
-// move player to center of safespot if partially on it
+// move player to center of safespot if partially on it; not currently working
         if (other.CompareTag("SafeSpot"))
         {
-            transform.position = new Vector3(other.transform.position.x, transform.position.y, other.transform.position.z);
+            onSafeSpot = true;
+            Vector3 center = other.bounds.center;
+            transform.position = new Vector3(center.x, transform.position.y, center.z);
+            Debug.Log("Safe");
         }
                 
     }
@@ -129,6 +134,11 @@ void Hop(Vector3 direction)
         if (log != null && log == currentLog)
         {
             currentLog = null;
+        }
+
+        if (other.CompareTag("SafeSpot"))
+        {
+            onSafeSpot = false;
         }
     }
 
